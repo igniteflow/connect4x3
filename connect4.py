@@ -1,11 +1,62 @@
 #!/usr/bin/python
-import opponent
+import random
 import time
 
 ROWS = 6
 COLUMNS = 7
 
 import winner
+
+class Opponent():
+
+    def __init__(self, color, ROWS):
+        """initiate a random"""
+        self.color = color
+        self.ROWS = ROWS
+
+    def opponent_next_step_rand(self, board):
+        """Returns an int between 0 - ROWS"""
+        return random.randint(0, self.ROWS)
+
+    def move(self, board):
+        a_bit_smarter = self.kind_of_smart(board)
+        if a_bit_smarter is not None:
+             return a_bit_smarter
+
+        dumb_ai_move = self.check_columns(board)
+        if dumb_ai_move is not None:
+             return dumb_ai_move
+
+        return self.opponent_next_step_rand(board)
+
+    def kind_of_smart(self, board):
+        import copy
+        for i in range(self.ROWS):
+            try_board = copy.copy(board)
+            insert(try_board, i, self.color)
+            if win_state(try_board):
+                 return i
+             
+
+    def should_play_this_column(self, column):
+        try:
+	    last_x = column.index('X')
+        except ValueError:
+	    last_x = len(column)
+
+        try:
+	    last_o = column.index('O')
+        except ValueError:
+	    last_o = len(column)
+
+	last_token = min(last_x, last_o)
+        return last_token >= 4
+
+    def check_columns(self, board):
+        """ loop through all the columns"""
+	for i, column in enumerate(board):
+            if self.should_play_this_column(column): 
+                return i
 
 def print_board(board):
     for row in zip(*board):
@@ -52,7 +103,7 @@ def main():
     other_player = 'O'
 
     ai = 'X'
-    bot = opponent.Opponent(ai, ROWS)
+    bot = Opponent(ai, ROWS)
 
     moves = 0
     
