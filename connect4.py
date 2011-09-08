@@ -1,5 +1,3 @@
-
-
 ROWS = 6
 COLUMNS = 7
 
