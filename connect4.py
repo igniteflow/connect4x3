@@ -111,7 +111,7 @@ def main():
         if current_player == 'X':
             moves += 1
         if ai == current_player:
-            time.sleep(0.5)
+            time.sleep(random.random() * 3)
             col = bot.move(board)
             insert(board, col, current_player)
             print_board(board)
