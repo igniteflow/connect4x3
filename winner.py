@@ -9,13 +9,13 @@ horizontals = [[(i, j), (i+1, j), (i+2, j), (i+3, j)] for i in range(COLS-3) for
 
 diags1 = [[(i, j), (i+1, j+1), (i+2, j+2), (i+3, j+3)] for i in range(COLS-3) for j in range(ROWS-3)]
 
-diags2 = [[(i, j+5), (i+1, j+4), (i+2, j+3), (i+3, j+2)] for i in range(COLS-3) for j in range(ROWS-3)]
+diags2 = [[(i, j+3), (i+1, j+2), (i+2, j+1), (i+3, j)] for i in range(COLS-3) for j in range(ROWS-3)]
 
 winning_posistions = verticals + horizontals + diags1 + diags2
 
 def winboard(board):
     for pos in winning_posistions:
-        x = ''.join([board[i][j] for j, i in pos if board[i][j]])
+        x = ''.join([board[i][j] for i, j in pos if board[i][j]])
         if (x == 'XXXX') or (x == 'OOOO'): 
             return True
     return False
