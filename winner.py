@@ -16,8 +16,9 @@ winning_posistions = verticals + horizontals + diags1 + diags2
 def winboard(board):
     for pos in winning_posistions:
         x = ''.join([board[i][j] for j, i in pos if board[i][j]])
-        return (x == 'XXXX') or (x == 'OOOO')
-            
+        if (x == 'XXXX') or (x == 'OOOO'): 
+            return True
+    return False
 
 class WinTest(unittest.TestCase):
     def test1(self):
