@@ -1,7 +1,9 @@
-
+#!/usr/bin/python
 
 ROWS = 6
 COLUMNS = 7
+
+import winner
 
 def print_board(board):
     for row in zip(*board):
@@ -14,7 +16,7 @@ def print_board(board):
     print
 
 def win_state(board):
-    return False
+    return winner.winboard(board)
 
 def insert(board, column, player):
     for i, cell in enumerate(board[column]):
