@@ -15,7 +15,7 @@ winning_posistions = verticals + horizontals + diags1 + diags2
 
 def winboard(board):
     for pos in winning_posistions:
-        x = ''.join([board[i][j] for j, i in pos])
+        x = ''.join([board[i][j] for j, i in pos if board[i][j]])
         return (x == 'XXXX') or (x == 'OOOO')
             
 
