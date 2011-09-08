@@ -58,7 +58,7 @@ def main():
             insert(board, col, current_player)
 
         if win_state(board):
-            print 'Winner!'
+            print 'Winner is %s!' % (current_player,)
             return
 
         current_player, other_player = other_player, current_player
