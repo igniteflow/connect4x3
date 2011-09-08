@@ -12,11 +12,9 @@ class Opponent():
         return random.randint(0, self.ROWS)
 
     def move(self, board):
-	try_methods = (self.check_columns, )
-	for try_method in try_methods:
-	    try_move = try_method(board)
-            if try_move:
-                return try_move
+        dumb_ai_move = self.check_columns(board)
+        if dumb_ai_move is not None:
+             return dumb_ai_move
 
         return self.opponent_next_step_rand(board)
 
@@ -31,13 +29,11 @@ class Opponent():
         except ValueError:
 	    last_o = len(column)
 
-#        print last_x
-#        print last_o
 	last_token = min(last_x, last_o)
-#        print last_token
         return last_token >= 4
 
     def check_columns(self, board):
+        """ loop through all the columns"""
 	for i, column in enumerate(board):
             if self.should_play_this_column(column): 
                 return i
@@ -46,6 +42,12 @@ class Opponent():
 
 if __name__ == "__main__":
     o = Opponent('X', 6)
+    board = [['X' * 6], ['', '', '', '', 'X', 'X']]
+    print o.move(board)
+    print
+    print
+    print
+    print
     board = [['', '', '', '', 'X', 'X'], ['X' * 6]]
     print o.move(board)
 
