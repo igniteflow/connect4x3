@@ -1,5 +1,6 @@
 #!/usr/bin/python
 import opponent
+import time
 
 ROWS = 6
 COLUMNS = 7
@@ -59,12 +60,14 @@ def main():
         if current_player == 'X':
             moves += 1
         if ai == current_player:
+            time.sleep(0.5)
             col = bot.move(board)
             insert(board, col, current_player)
-        else:
             print_board(board)
+        else:
             col = take_input(board)
             insert(board, col, current_player)
+            print_board(board)
 
         if win_state(board):
             print 'Winner is %s in %d moves!' % (current_player, moves)
