@@ -17,22 +17,27 @@ def win_state(board):
     return False
 
 def insert(board, column, player):
+    for i, cell in enumerate(board[column]):
+        if cell:
+            board[column][i-1] = player
+            return
+    board[column][-1] = player
     return
 
 def ai_move(board, current_player):
     return
 
 def take_input(board):
-    col = raw_input()
-
     while True:
+        col = raw_input()
         try:
-            col = int(col)
+            col = int(col.strip())
         except ValueError:
             continue
         else:
-            return col
-
+            if board[col-1][0]:
+                continue
+            return col - 1
 
 def main():
     board = [[None for x in range(ROWS)] for y in range(COLUMNS)]
@@ -53,6 +58,8 @@ def main():
         if win_state(board):
             print 'Winner!'
             return
+
+        current_player, other_player = other_player, current_player
 
 if __name__ == '__main__':
     main()
