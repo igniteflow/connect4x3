@@ -16,16 +16,40 @@ def print_board(board):
 def win_state(board):
     return False
 
+def insert(board, column, player):
+    return
+
+def ai_move(board, current_player):
+    return
+
+def take_input(board):
+    col = raw_input()
+
+    while True:
+        try:
+            col = int(col)
+        except ValueError:
+            continue
+        else:
+            return col
+
+
 def main():
     board = [[None for x in range(ROWS)] for y in range(COLUMNS)]
 
     current_player = 'X'
     other_player = 'O'
+
+    ai = None
     
     while True:
-        print_board(board)
+        if ai == current_player:
+            ai_move(board, current_player)
+        else:
+            print_board(board)
+            col = take_input(board)
+            insert(board, col, current_player)
 
-        data = raw_input()
         if win_state(board):
             print 'Winner!'
             return
