@@ -32,7 +32,7 @@ class Opponent():
     def kind_of_smart(self, board):
         import copy
         for i in range(self.ROWS):
-            try_board = copy.copy(board)
+            try_board = [copy.copy(col) for col in board]
             insert(try_board, i, self.color)
             if win_state(try_board):
                  return i
