@@ -51,7 +51,11 @@ def main():
 
     ai = None
     
+    moves = 0
+    
     while True:
+        if current_player == 'X':
+            moves += 1
         if ai == current_player:
             ai_move(board, current_player)
         else:
@@ -60,7 +64,7 @@ def main():
             insert(board, col, current_player)
 
         if win_state(board):
-            print 'Winner is %s!' % (current_player,)
+            print 'Winner is %s in %d moves!' % (current_player, moves)
             print_board(board)
             return
 
