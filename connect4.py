@@ -37,6 +37,8 @@ def take_input(board):
         except ValueError:
             continue
         else:
+            if not 1 <= col <= COLUMNS:
+                continue
             if board[col-1][0]:
                 continue
             return col - 1
@@ -59,6 +61,7 @@ def main():
 
         if win_state(board):
             print 'Winner is %s!' % (current_player,)
+            print_board(board)
             return
 
         current_player, other_player = other_player, current_player
