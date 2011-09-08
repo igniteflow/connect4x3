@@ -1,4 +1,5 @@
 #!/usr/bin/python
+import opponent
 
 ROWS = 6
 COLUMNS = 7
@@ -49,15 +50,17 @@ def main():
     current_player = 'X'
     other_player = 'O'
 
-    ai = None
-    
+    ai = 'X'
+    bot = opponent.Opponent(ai, ROWS)
+
     moves = 0
     
     while True:
         if current_player == 'X':
             moves += 1
         if ai == current_player:
-            ai_move(board, current_player)
+            col = bot.move(board)
+            insert(board, col, current_player)
         else:
             print_board(board)
             col = take_input(board)

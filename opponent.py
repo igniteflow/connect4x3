@@ -31,10 +31,10 @@ class Opponent():
         except ValueError:
 	    last_o = len(column)
 
-        print last_x
-        print last_o
+#        print last_x
+#        print last_o
 	last_token = min(last_x, last_o)
-        print last_token
+#        print last_token
         return last_token >= 4
 
     def check_columns(self, board):
